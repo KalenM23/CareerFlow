@@ -5,21 +5,21 @@
 //  Created by Kalen Mclaughlin on 6/18/26.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     
+    // MARK: Properties
     // created state properties
     @State private var jobTitle = ""
     @State private var companyName = ""
     @State private var statusSelection: appStatus?
     @State private var applicationDate = Date()
-   
     
-
     var body: some View {
         
+        // MARK: Life Line
         NavigationStack {
             Form {
                 
@@ -40,14 +40,16 @@ struct ContentView: View {
                     Picker("Status", selection: $statusSelection) {
                         Text("Applied").tag(appStatus.Applied)
                         Text("UnderReview").tag(appStatus.UnderReview)
-                        Text("Interview Scheduled").tag(appStatus.InterviewScheduled)
+                        Text("Interview Scheduled").tag(
+                            appStatus.InterviewScheduled
+                        )
                         Text("Interviewing").tag(appStatus.Interviewing)
                         Text("Offer Received").tag(appStatus.OfferReceived)
                         Text("Accepted").tag(appStatus.Accepted)
                         Text("Rejected").tag(appStatus.Rejected)
                         Text("Withdrawn").tag(appStatus.Withdrawn)
                     }
-                        
+                    
                     // Date picker that allow users to click their application date and time
                     DatePicker("Date", selection: $applicationDate)
                     
@@ -57,29 +59,26 @@ struct ContentView: View {
                     } label: {
                         Text("Add Application")
                             .frame(maxWidth: 350)
-                            
+                        
                     }
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.roundedRectangle)
                     
-                    
                 }
-                    
+                
             }
-       }
+        }
         
-            
     }
-        
-        
+    
 }
 
-   
-
+// MARK: Enums / Functions
 // created a enum for the picker
 enum appStatus {
     
-    case Applied, UnderReview, InterviewScheduled, Interviewing, OfferReceived, Accepted, Rejected, Withdrawn
+    case Applied, UnderReview, InterviewScheduled, Interviewing, OfferReceived,
+         Accepted, Rejected, Withdrawn
 }
 
 #Preview {
