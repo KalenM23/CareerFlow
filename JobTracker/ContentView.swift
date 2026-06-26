@@ -14,9 +14,12 @@ struct ContentView: View {
     @State private var jobTitle = ""
     @State private var companyName = ""
     @State private var statusSelection: appStatus?
+    @State private var applicationDate = Date()
+   
     
 
     var body: some View {
+        
        // created a vstack that have leading alignment and 8 spaces
         VStack(alignment: .leading, spacing: 8) {
             // created a text with value job title
@@ -32,6 +35,40 @@ struct ContentView: View {
             // change the textfieldstyle to a rounded border
                 .textFieldStyle(.roundedBorder)
                 
+            // List with a picker that allow users to show their applications status
+            
+            List {
+                Picker("Status", selection: $statusSelection) {
+                    Text("Applied").tag(appStatus.Applied)
+                    Text("UnderReview").tag(appStatus.UnderReview)
+                    Text("Interview Scheduled").tag(appStatus.InterviewScheduled)
+                    Text("Interviewing").tag(appStatus.Interviewing)
+                    Text("Offer Received").tag(appStatus.OfferReceived)
+                    Text("Accepted").tag(appStatus.Accepted)
+                    Text("Rejected").tag(appStatus.Rejected)
+                    Text("Withdrawn").tag(appStatus.Withdrawn)
+                        
+                }
+            }
+            // Date picker that allow users to click their application date and time
+            DatePicker("Application Date", selection: $applicationDate)
+            
+            Button {
+                // Action goes here
+                // what does the button do
+            } label: {
+                Text("Add Application")
+                    .frame(maxWidth: 350)
+                    
+            }
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.roundedRectangle)
+           
+
+            
+           
+            
+            
                 
             
             
@@ -43,7 +80,7 @@ struct ContentView: View {
 
    
 }
-// created a enum for the picker 
+// created a enum for the picker
 enum appStatus {
     
     case Applied, UnderReview, InterviewScheduled, Interviewing, OfferReceived, Accepted, Rejected, Withdrawn
