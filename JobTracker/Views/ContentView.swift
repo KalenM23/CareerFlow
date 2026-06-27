@@ -14,12 +14,15 @@ struct ContentView: View {
     // created state properties
     @State private var jobTitle = ""
     @State private var companyName = ""
+    @State private var companyLocation = ""
     @State private var statusSelection: appStatus?
     @State private var applicationDate = Date()
     
     var body: some View {
         
         // MARK: Life Line
+        
+     
         NavigationStack {
             Form {
                 
@@ -35,6 +38,10 @@ struct ContentView: View {
                     // created a text field with a label and binded state var to it
                     TextField("", text: $companyName)
                     // change the textfieldstyle to a rounded border
+                        .textFieldStyle(.roundedBorder)
+                    // created a text field with a label and binded state var to it
+                    Text("Location")
+                    TextField("", text: $companyLocation)
                         .textFieldStyle(.roundedBorder)
                     
                     Picker("Status", selection: $statusSelection) {
