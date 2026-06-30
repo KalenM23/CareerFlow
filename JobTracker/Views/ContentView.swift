@@ -15,7 +15,8 @@ struct ContentView: View {
     @State private var jobTitle = ""
     @State private var companyName = ""
     @State private var companyLocation = ""
-    @State private var statusSelection: appStatus?
+    @State private var jobSalary = ""
+    @State private var statusSelection = AppStatus.applied
     @State private var applicationDate = Date()
     
     var body: some View {
@@ -44,17 +45,21 @@ struct ContentView: View {
                     TextField("", text: $companyLocation)
                         .textFieldStyle(.roundedBorder)
                     
+                    // created a text field with a label and binded state var to it
+                    Text("Salary")
+                    TextField("", text: $jobSalary)
+                        .textFieldStyle(.roundedBorder)
+                    
                     Picker("Status", selection: $statusSelection) {
-                        Text("Applied").tag(appStatus.Applied)
-                        Text("UnderReview").tag(appStatus.UnderReview)
-                        Text("Interview Scheduled").tag(
-                            appStatus.InterviewScheduled
-                        )
-                        Text("Interviewing").tag(appStatus.Interviewing)
-                        Text("Offer Received").tag(appStatus.OfferReceived)
-                        Text("Accepted").tag(appStatus.Accepted)
-                        Text("Rejected").tag(appStatus.Rejected)
-                        Text("Withdrawn").tag(appStatus.Withdrawn)
+                        Text("Applied").tag(AppStatus.applied)
+                        Text("Under Review").tag(AppStatus.underreview)
+                        Text("Interview Scheduled")
+                            .tag(AppStatus.interviewscheduled)
+                            .tag(AppStatus.interviewing)
+                            Text("Offer Received").tag(AppStatus.offerreceived)
+                            Text("Accepted").tag(AppStatus.accepted)
+                            Text("Rejected").tag(AppStatus.rejected)
+                            Text("Withdrawn").tag(AppStatus.withdrawn)
                     }
                     
                     // Date picker that allow users to click their application date and time
@@ -82,10 +87,10 @@ struct ContentView: View {
 
 // MARK: Enums / Functions
 // created a enum for the picker
-enum appStatus {
+enum AppStatus {
     
-    case Applied, UnderReview, InterviewScheduled, Interviewing, OfferReceived,
-         Accepted, Rejected, Withdrawn
+    case applied, underreview, interviewscheduled, interviewing, offerreceived,
+         accepted, rejected, withdrawn
 }
 
 #Preview {
