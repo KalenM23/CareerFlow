@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var statusSelection = AppStatus.applied
     @State private var applicationDate = Date()
     
+    
     var body: some View {
         
         // MARK: Life Line
@@ -86,12 +87,6 @@ struct ContentView: View {
 }
 
 // MARK: Enums / Functions
-// created a enum for the picker
-enum AppStatus {
-    
-    case applied, underreview, interviewscheduled, interviewing, offerreceived,
-         accepted, rejected, withdrawn
-}
 
 #Preview {
     ContentView()
