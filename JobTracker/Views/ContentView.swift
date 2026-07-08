@@ -69,6 +69,8 @@ struct ContentView: View {
                     Button {
                         // Action goes here
                         // what does the button do
+                        
+                        
                     } label: {
                         Text("Add Application")
                             .frame(maxWidth: 350)

@@ -7,9 +7,28 @@
 
 import Foundation
 
-class JobApplicationViewModel {
+
+@Observable
+class JobApplicationViewModel  {
+    
+    var jobApplications: [JobApplicationModel] = []
+    var jobStatus: AppStatus = .applied
+    
+    
+    
+    
     
     // MARK: Functions
+    
+    func AddApplication() {
+        
+        
+        
+        
+        
+    }
+    
+    
     
     func EditApplication() {
         
@@ -17,7 +36,7 @@ class JobApplicationViewModel {
         
     }
     
-    func deleteApplication() {
+    func DeleteApplication() {
         
         
     }
