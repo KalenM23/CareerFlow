@@ -12,13 +12,7 @@ struct ContentView: View {
     
     // MARK: Properties
     // created state properties
-    @State private var viewmodel = JobApplicationViewModel()
-    @State private var jobTitle = ""
-    @State private var companyName = ""
-    @State private var companyLocation = ""
-    @State private var jobSalary = ""
-    @State private var statusSelection = AppStatus.applied
-    @State private var applicationDate = Date()
+    @State private var viewmodel = JobApplicationViewModel(modelContext: <#ModelContext#>)
     
     
     var body: some View {
@@ -33,26 +27,26 @@ struct ContentView: View {
                     // created a text with value job title
                     Text("Job Title")
                     // created a textfield name jobtitle and binded state property to it
-                    TextField("", text: $jobTitle)
+                    TextField("", text: $viewmodel.jobTitle)
                     // change the textfieldstyle to a rounded border
                         .textFieldStyle(.roundedBorder)
                     // created a text with value company name
                     Text("Company Name")
                     // created a text field with a label and binded state var to it
-                    TextField("", text: $companyName)
+                    TextField("", text: $viewmodel.companyName)
                     // change the textfieldstyle to a rounded border
                         .textFieldStyle(.roundedBorder)
                     // created a text field with a label and binded state var to it
                     Text("Location")
-                    TextField("", text: $companyLocation)
+                    TextField("", text: $viewmodel.companyLocation)
                         .textFieldStyle(.roundedBorder)
                     
                     // created a text field with a label and binded state var to it
                     Text("Salary")
-                    TextField("", text: $jobSalary)
+                    TextField("", text: $viewmodel.jobSalary)
                         .textFieldStyle(.roundedBorder)
                     
-                    Picker("Status", selection: $statusSelection) {
+                    Picker("Status", selection: $viewmodel.applicationStatus) {
                         Text("Applied").tag(AppStatus.applied)
                         Text("Under Review").tag(AppStatus.underreview)
                         Text("Interview Scheduled")
@@ -66,7 +60,7 @@ struct ContentView: View {
                     }
                     
                     // Date picker that allow users to click their application date and time
-                    DatePicker("Date", selection: $applicationDate)
+                    DatePicker("Date", selection: $viewmodel.applicationDate)
                     
                     Button {
                         // Action goes here

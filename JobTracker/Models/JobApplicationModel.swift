@@ -15,7 +15,7 @@ class JobApplicationModel {
     var jobTitle: String
     var companyName: String
     var companyLocation: String
-    var jobSalary: Int
+    var jobSalary: String
     var applicationStatus: AppStatus = AppStatus.applied
     var applicationDate: Date
     
@@ -26,8 +26,8 @@ class JobApplicationModel {
         jobTitle: String,
         companyName: String,
         companyLocation: String,
-        jobSalary: Int,
-        applicationStatus: AppStatus = AppStatus.applied,
+        jobSalary: String,
+        applicationStatus: AppStatus,
         applicationDate: Date
     ) {
         self.jobTitle = jobTitle

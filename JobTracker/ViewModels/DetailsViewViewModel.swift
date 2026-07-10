@@ -11,7 +11,17 @@ class DetailsViewViewModel {
     
     
     
+    func EditApplication() {
+        
+        
+        
+    }
     
+    func DeleteApplication() {
+        
+        
+        
+    }
     
     
     
