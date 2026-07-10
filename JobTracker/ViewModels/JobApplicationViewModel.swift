@@ -10,8 +10,7 @@ import Foundation
 
 @Observable
 class JobApplicationViewModel  {
-    
-    var jobApplications: [JobApplicationModel] = []
+
     var jobStatus: AppStatus = .applied
     
     

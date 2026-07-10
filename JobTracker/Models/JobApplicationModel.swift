@@ -16,7 +16,7 @@ class JobApplicationModel {
     var companyName: String
     var companyLocation: String
     var jobSalary: Int
-    var aaplicationStatus = AppStatus.applied
+    var applicationStatus: AppStatus = AppStatus.applied
     var applicationDate: Date
     
     
@@ -27,24 +27,23 @@ class JobApplicationModel {
         companyName: String,
         companyLocation: String,
         jobSalary: Int,
-        aaplicationStatus: AppStatus = AppStatus.applied,
+        applicationStatus: AppStatus = AppStatus.applied,
         applicationDate: Date
     ) {
         self.jobTitle = jobTitle
         self.companyName = companyName
         self.companyLocation = companyLocation
         self.jobSalary = jobSalary
-        self.aaplicationStatus = aaplicationStatus
+        self.applicationStatus = applicationStatus
         self.applicationDate = applicationDate
     }
-    
     
     
    
 }
 
 // MARK: Enums
-enum AppStatus {
+enum AppStatus: String, Codable {
     
     case applied, underreview, interviewscheduled, interviewing, offerreceived,
          accepted, rejected, withdrawn

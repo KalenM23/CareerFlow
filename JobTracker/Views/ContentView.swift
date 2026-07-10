@@ -12,6 +12,7 @@ struct ContentView: View {
     
     // MARK: Properties
     // created state properties
+    @State private var viewmodel = JobApplicationViewModel()
     @State private var jobTitle = ""
     @State private var companyName = ""
     @State private var companyLocation = ""
@@ -56,6 +57,7 @@ struct ContentView: View {
                         Text("Under Review").tag(AppStatus.underreview)
                         Text("Interview Scheduled")
                             .tag(AppStatus.interviewscheduled)
+                        Text("Interviewing")
                             .tag(AppStatus.interviewing)
                             Text("Offer Received").tag(AppStatus.offerreceived)
                             Text("Accepted").tag(AppStatus.accepted)
