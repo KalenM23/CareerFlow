@@ -8,50 +8,55 @@
 import Foundation
 import SwiftData
 
-
 @Observable
-class JobApplicationViewModel  {
+class JobApplicationViewModel {
 
-    // MARK: Properties
-        var jobTitle: String = ""
-        var companyName: String = ""
-        var companyLocation: String = ""
-        var jobSalary: String = ""
-        var applicationStatus: AppStatus = .applied
-        var applicationDate: Date = .now
-        var errorMessage: String?
+    var jobTitle: String = ""
+    var companyName: String = ""
+    var companyLocation: String = ""
+    var jobSalary: Int = 0
+    var applicationStatus: AppStatus = .applied
+    var applicationDate: Date = .now
+    var errorMessage: String?
 
-    // This will save the data to swiftdata
-    private var modelContext: ModelContext
-    
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+    private var modelContext: ModelContext?
+
+    func configure(with context: ModelContext) {
+        self.modelContext = context
     }
-    
-    
-    
-    // MARK: Functions
-    
-    func AddApplication() -> Bool {
-        
-        guard !jobTitle.isEmpty, !companyName.isEmpty else {
-                    errorMessage = "Please fill out all fields."
-                    return false
-                }
-                let newApp = JobApplicationModel(
-                    jobTitle: jobTitle,
-                    companyName: companyName,
-                    companyLocation: companyLocation,
-                    jobSalary: jobSalary,
-                    applicationStatus: applicationStatus,
-                    applicationDate: applicationDate
-                )
-                modelContext.insert(newApp)
-                return true
-        
-        
-        
+
+    func addApplication() {
+        guard let modelContext else { return }
+
+        guard !jobTitle.trimmingCharacters(in: .whitespaces).isEmpty else {
+            errorMessage = "Job title can't be empty."
+            return
+        }
+        guard !companyName.trimmingCharacters(in: .whitespaces).isEmpty else {
+            errorMessage = "Company name can't be empty."
+            return
+        }
+
+        let newApplication = JobApplicationModel(
+            jobTitle: jobTitle,
+            companyName: companyName,
+            companyLocation: companyLocation,
+            jobSalary: String(jobSalary),
+            applicationStatus: applicationStatus,
+            applicationDate: applicationDate
+        )
+
+        modelContext.insert(newApplication)
+        clearForm()
     }
-    
-    
+
+    func clearForm() {
+        jobTitle = ""
+        companyName = ""
+        companyLocation = ""
+        jobSalary = 0
+        applicationStatus = .applied
+        applicationDate = .now
+        errorMessage = nil
+    }
 }
