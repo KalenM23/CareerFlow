@@ -10,23 +10,14 @@ import SwiftData
 
 @main
 struct JobTrackerApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            // RootView (not ContentView directly) is now the entry point,
+            // since it's responsible for showing splash vs. real content.
+            RootView()
         }
-        .modelContainer(sharedModelContainer)
+        // Sets up SwiftData's storage for JobApplicationModel,
+        // available to every view in the app via @Environment(\.modelContext) and @Query.
+        .modelContainer(for: JobApplicationModel.self)
     }
 }
